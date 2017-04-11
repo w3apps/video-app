@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,29 @@
   "bugs": {
     "url": "https://github.com/w3apps/video-app/issues"
   },
-  "homepage": "https://github.com/w3apps/video-app#readme"
+  "homepage": "https://github.com/w3apps/video-app#readme",
+  "dependencies": {
+    "react": "^15.5.3",
+    "react-addons-update": "^15.5.2",
+    "react-dom": "^15.5.3",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-promise-middleware": "^4.2.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "stats-webpack-plugin": "^0.6.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
 }
