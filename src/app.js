@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router } from 'react-router'
+import { Router, Route } from 'react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
-import {
-    Route,
-} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { Provider } from 'react-redux'

@@ -15,7 +15,13 @@ export default class VideoList extends Component {
                             <Paper className="VideoContainer" key={video.id.videoId} zDepth={2}>
                                 <FavoriteButton className="VideoFavBtn" video={video} />
                                 <img className="VideoThumbnail" src={video.snippet.thumbnails.medium.url} />
-                                <h3 className="VideoTitle">{video.snippet.title}</h3>
+                                <a
+                                    href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
+                                    target="_blank"
+                                    className="VideoTitle"
+                                >
+                                    {video.snippet.title}
+                                </a>
                                 <h4 className="VideoChannel">{video.snippet.channelTitle}</h4>
                                 {
                                     video.statistics ?
