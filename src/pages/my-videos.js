@@ -12,8 +12,6 @@ class MyVideos extends Component {
     render () {
         return (
             <section>
-                <Search />
-
                 <div className="FiltersContainer">
                     <CategoryFilter videos={this.props.favoriteVideos} />
                     <YearFilter videos={this.props.favoriteVideos} />
