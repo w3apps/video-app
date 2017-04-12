@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const videosSelector = state => state.searchedVideos;
+const videosSelector = (state, videoList) => state[videoList]; // select either the searchedVideos or myVideos
 const filterCategoryId = state => state.filters.categoryId;
 const filterStartYear = state => state.filters.startYear;
 const filterEndYear = state => state.filters.endYear;

@@ -28,6 +28,6 @@ class Home extends Component {
 export default connect(
     (state) => ({
         searchedVideos: state.searchedVideos,
-        visibleVideos: getVisibleVideos(state)
+        visibleVideos: getVisibleVideos(state, 'searchedVideos')
     }),
 )(Home);

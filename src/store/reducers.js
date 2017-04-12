@@ -11,7 +11,8 @@ const defaultState = {
         categoryId: 0, // TODO: make sure there is no category with ID = 0
         startYear: null,
         endYear: null
-    }
+    },
+    favoriteVideos: [],
 };
 
 export default function products(state = defaultState, action = {}) {
@@ -59,6 +60,18 @@ export default function products(state = defaultState, action = {}) {
                     endYear: {$set: action.value.endYear },
                 },
             });
+        }
+        case (actionTypes.SAVE_VIDEO_TO_FAVORITES): {
+            return update(state, { favoriteVideos: { $push: [action.value] }});
+        }
+        case (actionTypes.REMOVE_VIDEO_FROM_FAVORITES): {
+            const newFavoriteVideos = [];
+            state.favoriteVideos.forEach((video) => {
+                if (video.id.videoId !== action.value.id.videoId) {
+                    newFavoriteVideos.push(video);
+                }
+            });
+            return update(state, { favoriteVideos: { $set: newFavoriteVideos }});
         }
         default: {
             return state;

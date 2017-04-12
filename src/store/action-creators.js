@@ -11,6 +11,8 @@ export const actionTypes = {
     GET_SEARCHED_VIDEOS_CATEGORIES: 'GET_SEARCHED_VIDEOS_CATEGORIES',
     APPLY_CATEGORY_FILTER: 'APPLY_CATEGORY_FILTER',
     APPLY_YEAR_FILTER: 'APPLY_YEAR_FILTER',
+    SAVE_VIDEO_TO_FAVORITES: 'SAVE_VIDEO_TO_FAVORITES',
+    REMOVE_VIDEO_FROM_FAVORITES: 'REMOVE_VIDEO_FROM_FAVORITES',
 };
 
 export function getAutoCompleteSuggestions(searchText) {
@@ -77,9 +79,24 @@ export function applyCategoryFilter(categoryId) {
         value: categoryId,
     };
 }
+
 export function applyYearFilter(yearRange) {
     return {
         type: actionTypes.APPLY_YEAR_FILTER,
         value: yearRange,
+    };
+}
+
+export function saveVideoToFavorites(video) {
+    return {
+        type: actionTypes.SAVE_VIDEO_TO_FAVORITES,
+        value: video,
+    };
+}
+
+export function removeVideoFromFavorites(video) {
+    return {
+        type: actionTypes.REMOVE_VIDEO_FROM_FAVORITES,
+        value: video,
     };
 }

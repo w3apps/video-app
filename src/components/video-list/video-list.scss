@@ -3,6 +3,7 @@
   flex-wrap: wrap;
 
   .VideoContainer {
+    position: relative;
     width: 240px;
     padding: 20px;
 
@@ -27,6 +28,18 @@
       padding: 3px 0;
       font-size: 12px;
       color: #666666;
+    }
+
+    .VideoFavBtn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 24px;
+      height: 24px;
+      padding: 5px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      cursor: pointer;
     }
 
   }
