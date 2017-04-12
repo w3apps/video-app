@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 
 import Search from '../components/search/search'
 import VideoList from "../components/video-list/video-list";
+import CategoryFilter from '../components/category-filter/category-filter';
+import YearFilter from '../components/year-filter/year-filter';
+import { getVisibleVideos } from '../selectors/selectors';
 
 class Home extends Component {
-
-    componentWillReceiveProps(nextProps) {
-        console.log('home', nextProps.searchedVideos);
-    }
 
     render () {
         return (
             <section>
                 <Search />
 
-                <VideoList videos={this.props.searchedVideos} />
+                <div className="FiltersContainer">
+                    <CategoryFilter />
+                    <YearFilter videos={this.props.searchedVideos} />
+                </div>
+
+                <VideoList videos={this.props.visibleVideos} />
             </section>
         )
     }
@@ -24,5 +28,6 @@ class Home extends Component {
 export default connect(
     (state) => ({
         searchedVideos: state.searchedVideos,
+        visibleVideos: getVisibleVideos(state)
     }),
 )(Home);

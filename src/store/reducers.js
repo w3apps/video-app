@@ -6,7 +6,12 @@ const defaultState = {
     videos: [],
     autoCompleteSuggestions: [],
     searchedVideos: [],
-    searchedVideosCategories: [],
+    videosCategories: [],
+    filters: {
+        categoryId: 0, // TODO: make sure there is no category with ID = 0
+        startYear: null,
+        endYear: null
+    }
 };
 
 export default function products(state = defaultState, action = {}) {
@@ -39,7 +44,20 @@ export default function products(state = defaultState, action = {}) {
         }
         case (`${actionTypes.GET_SEARCHED_VIDEOS_CATEGORIES}_FULFILLED`): {
             return update(state, {
-                searchedVideosCategories: { $set: action.payload.items },
+                videosCategories: { $set: action.payload.items },
+            });
+        }
+        case (actionTypes.APPLY_CATEGORY_FILTER): {
+            return update(state, {
+                filters: { categoryId: {$set: action.value } },
+            });
+        }
+        case (actionTypes.APPLY_YEAR_FILTER): {
+            return update(state, {
+                filters: {
+                    startYear: {$set: action.value.startYear },
+                    endYear: {$set: action.value.endYear },
+                },
             });
         }
         default: {

@@ -9,6 +9,8 @@ export const actionTypes = {
     GET_SEARCHED_VIDEOS: 'GET_SEARCHED_VIDEOS',
     GET_SEARCHED_VIDEOS_STATISTICS: 'GET_SEARCHED_VIDEOS_STATISTICS',
     GET_SEARCHED_VIDEOS_CATEGORIES: 'GET_SEARCHED_VIDEOS_CATEGORIES',
+    APPLY_CATEGORY_FILTER: 'APPLY_CATEGORY_FILTER',
+    APPLY_YEAR_FILTER: 'APPLY_YEAR_FILTER',
 };
 
 export function getAutoCompleteSuggestions(searchText) {
@@ -56,7 +58,6 @@ export function getVideoCategories(videos) {
 
     // get the id's of all the videos categories
     const categoryIdList = videos.items.map((video) => {
-        console.log('cool', video);
         return video.snippet.categoryId;
     });
 
@@ -67,5 +68,18 @@ export function getVideoCategories(videos) {
         payload: fetch(`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&id=${categoryIdString}&key=${API_KEY}`).then((response) => {
             return response.json();
         }),
+    };
+}
+
+export function applyCategoryFilter(categoryId) {
+    return {
+        type: actionTypes.APPLY_CATEGORY_FILTER,
+        value: categoryId,
+    };
+}
+export function applyYearFilter(yearRange) {
+    return {
+        type: actionTypes.APPLY_YEAR_FILTER,
+        value: yearRange,
     };
 }

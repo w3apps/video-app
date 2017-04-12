@@ -1,0 +1,14 @@
+.YearFilter {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .SliderContainer {
+    flex-grow: 1;
+    padding: 0 20px;
+  }
+
+  .YearFilterLabel {
+    margin-top: 20px;
+  }
+}
