@@ -1,7 +1,7 @@
 # video-app
 
 ## Requirements
-- node v6.10.x (tested with 6.10.2 on Win10).
+- node v6.10.x - [Download](https://nodejs.org/en/download/) (tested with 6.10.2 on Win10).
 
 ## Installation
 - clone the repository;
