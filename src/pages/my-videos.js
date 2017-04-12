@@ -15,7 +15,7 @@ class MyVideos extends Component {
                 <Search />
 
                 <div className="FiltersContainer">
-                    <CategoryFilter />
+                    <CategoryFilter videos={this.props.favoriteVideos} />
                     <YearFilter videos={this.props.favoriteVideos} />
                 </div>
 

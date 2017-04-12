@@ -15,7 +15,7 @@ class Home extends Component {
                 <Search />
 
                 <div className="FiltersContainer">
-                    <CategoryFilter />
+                    <CategoryFilter videos={this.props.searchedVideos} />
                     <YearFilter videos={this.props.searchedVideos} />
                 </div>
 

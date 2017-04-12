@@ -1,5 +1,6 @@
 import update from 'react-addons-update';
 
+import { readFromStorage } from '../utils/storage';
 import { actionTypes } from './action-creators';
 
 const defaultState = {
@@ -12,7 +13,7 @@ const defaultState = {
         startYear: null,
         endYear: null
     },
-    favoriteVideos: [],
+    favoriteVideos: readFromStorage('favoriteVideos'),
 };
 
 export default function products(state = defaultState, action = {}) {
@@ -43,7 +44,7 @@ export default function products(state = defaultState, action = {}) {
                 searchedVideos: { $set: newSearchedVideos },
             });
         }
-        case (`${actionTypes.GET_SEARCHED_VIDEOS_CATEGORIES}_FULFILLED`): {
+        case (`${actionTypes.GET_VIDEO_CATEGORIES}_FULFILLED`): {
             return update(state, {
                 videosCategories: { $set: action.payload.items },
             });

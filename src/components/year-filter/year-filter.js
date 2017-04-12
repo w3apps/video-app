@@ -11,14 +11,20 @@ class YearFilter extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            sliderValue: 50,
-        }
+        this.state = {};
+    }
+
+    componentWillMount() {
+        this.calcYears(this.props.videos);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.videos) {
-            const yearList = nextProps.videos.map((video) => {
+        this.calcYears(nextProps.videos);
+    }
+
+    calcYears = (videos) => {
+        if (videos) {
+            const yearList = videos.map((video) => {
                 const date = new Date(video.snippet.publishedAt);
                 return date.getFullYear();
             });

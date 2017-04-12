@@ -8,7 +8,7 @@ export const actionTypes = {
     GET_AUTO_COMPLETE_SUGGESTIONS: 'GET_AUTO_COMPLETE_SUGGESTIONS',
     GET_SEARCHED_VIDEOS: 'GET_SEARCHED_VIDEOS',
     GET_SEARCHED_VIDEOS_STATISTICS: 'GET_SEARCHED_VIDEOS_STATISTICS',
-    GET_SEARCHED_VIDEOS_CATEGORIES: 'GET_SEARCHED_VIDEOS_CATEGORIES',
+    GET_VIDEO_CATEGORIES: 'GET_VIDEO_CATEGORIES',
     APPLY_CATEGORY_FILTER: 'APPLY_CATEGORY_FILTER',
     APPLY_YEAR_FILTER: 'APPLY_YEAR_FILTER',
     SAVE_VIDEO_TO_FAVORITES: 'SAVE_VIDEO_TO_FAVORITES',
@@ -47,29 +47,28 @@ export function getVideoStatistics(videos) {
 
     return {
         type: actionTypes.GET_SEARCHED_VIDEOS_STATISTICS,
-        payload: fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoIdString}&key=${API_KEY}`).then((response) => {
-            return response.json();
-        }).then((response) => {
-            store.dispatch(getVideoCategories(response));
-            return response;
-        })
+        payload: fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoIdString}&key=${API_KEY}`)
+            .then((response) => {
+                return response.json();
+            }),
     };
 }
 
 export function getVideoCategories(videos) {
 
     // get the id's of all the videos categories
-    const categoryIdList = videos.items.map((video) => {
+    const categoryIdList = videos.map((video) => {
         return video.snippet.categoryId;
     });
 
     const categoryIdString = categoryIdList.join(',');
 
     return {
-        type: actionTypes.GET_SEARCHED_VIDEOS_CATEGORIES,
-        payload: fetch(`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&id=${categoryIdString}&key=${API_KEY}`).then((response) => {
-            return response.json();
-        }),
+        type: actionTypes.GET_VIDEO_CATEGORIES,
+        payload: fetch(`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&id=${categoryIdString}&key=${API_KEY}`)
+            .then((response) => {
+                return response.json();
+            }),
     };
 }
 

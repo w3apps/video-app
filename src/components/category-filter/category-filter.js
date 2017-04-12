@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { applyCategoryFilter } from '../../store/action-creators';
+import { applyCategoryFilter, getVideoCategories } from '../../store/action-creators';
 
 class CategoryFilter extends Component {
 
@@ -15,7 +15,14 @@ class CategoryFilter extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.getVideoCategories(this.props.videos);
+    }
+
     componentWillReceiveProps(nextProps) {
+        if (nextProps.videosCategories.length === 0 && nextProps.videos.length > 0) {
+            this.props.getVideoCategories(nextProps.videos);
+        }
         if (nextProps.filters.categoryId) {
             this.setState({selectedCategory: nextProps.filters.categoryId});
         }
@@ -54,5 +61,6 @@ export default connect(
     }),
     (dispatch) => bindActionCreators({
         applyCategoryFilter,
+        getVideoCategories,
     }, dispatch),
 )(CategoryFilter);

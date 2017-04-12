@@ -6,7 +6,6 @@ import './video-list.scss';
 
 export default class VideoList extends Component {
     render () {
-        console.log('hmmmm', this.props.videos);
         return (
             <div className="VideoList">
                 {

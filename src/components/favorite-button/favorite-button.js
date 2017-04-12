@@ -4,9 +4,14 @@ import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { saveToStorage } from '../../utils/storage';
 import { saveVideoToFavorites, removeVideoFromFavorites } from '../../store/action-creators';
 
 class FavoriteButton extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        saveToStorage(nextProps.favoriteVideos);
+    }
 
     isVideoFavorite = (video) => {
         // TODO: map the videos in an object with the videoId as the key to avoid looping
@@ -16,7 +21,6 @@ class FavoriteButton extends Component {
     }
 
     handleSave = (video) => {
-        console.log('nice', video);
         if (this.isVideoFavorite(video)) {
             this.props.removeVideoFromFavorites(video);
         }
@@ -25,9 +29,7 @@ class FavoriteButton extends Component {
         }
     }
 
-
     render () {
-        console.log('in render', this.isVideoFavorite(this.props.video));
         return (
             <div className={this.props.className} onClick={() => this.handleSave(this.props.video)}>
                 {
