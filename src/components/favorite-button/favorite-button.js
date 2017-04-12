@@ -10,7 +10,7 @@ import { saveVideoToFavorites, removeVideoFromFavorites } from '../../store/acti
 class FavoriteButton extends Component {
 
     componentWillReceiveProps(nextProps) {
-        saveToStorage(nextProps.favoriteVideos);
+        saveToStorage('favoriteVideos', nextProps.favoriteVideos);
     }
 
     isVideoFavorite = (video) => {

@@ -19,9 +19,6 @@ export default class App extends Component {
         this.state = {
             selectedTab: history.location.pathname,
         };
-    }
-
-    componentWillMount() {
         injectTapEventPlugin();
     }
 
@@ -38,6 +35,7 @@ export default class App extends Component {
                 <MuiThemeProvider>
                     <Router history={history}>
                         <div>
+                            {/*Each route is loaded inside it's own tab*/}
                             <Tabs value={this.state.selectedTab} onChange={this.handleTab}>
                                 <Tab value='/' label="Search Videos" >
                                     <Route exact path="/" component={Home}/>

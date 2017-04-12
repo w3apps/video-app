@@ -13,7 +13,7 @@ const defaultState = {
         startYear: null,
         endYear: null
     },
-    favoriteVideos: readFromStorage('favoriteVideos'),
+    favoriteVideos: readFromStorage('favoriteVideos'), // hydrate the store with localStorage data (if any)
 };
 
 export default function products(state = defaultState, action = {}) {
@@ -30,7 +30,7 @@ export default function products(state = defaultState, action = {}) {
         }
         case (`${actionTypes.GET_SEARCHED_VIDEOS_STATISTICS}_FULFILLED`): {
 
-            // add the statistic object to the video object
+            // add the statistic and snippet objects to the video object
             const newSearchedVideos = state.searchedVideos.map((video, i) => {
                 return Object.assign(video,
                     {
@@ -67,6 +67,7 @@ export default function products(state = defaultState, action = {}) {
         }
         case (actionTypes.REMOVE_VIDEO_FROM_FAVORITES): {
             const newFavoriteVideos = [];
+            // add all the videos to the new array, except for the one being removed
             state.favoriteVideos.forEach((video) => {
                 if (video.id.videoId !== action.value.id.videoId) {
                     newFavoriteVideos.push(video);
