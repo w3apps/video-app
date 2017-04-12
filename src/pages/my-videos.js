@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Search from '../components/search/search'
 import VideoList from "../components/video-list/video-list";
 import CategoryFilter from '../components/category-filter/category-filter';
 import YearFilter from '../components/year-filter/year-filter';

@@ -6,6 +6,9 @@ import { bindActionCreators } from 'redux';
 
 import { applyCategoryFilter, getVideoCategories } from '../../store/action-creators';
 
+/**
+ * Component that displays a dropDownMenu with the available categories for the current videos.
+ */
 class CategoryFilter extends Component {
 
     constructor(props) {
@@ -16,23 +19,41 @@ class CategoryFilter extends Component {
     }
 
     componentWillMount() {
-        this.props.getVideoCategories(this.props.videos);
+
+        // if there are videos, fetch the categories from the API (usually happens for local saved videos)
+        if (this.props.videos.length > 0) {
+            this.props.getVideoCategories(this.props.videos);
+        }
+
     }
 
     componentWillReceiveProps(nextProps) {
+
+        // if there are no categories yet, fetch them from the API
         if (nextProps.videosCategories.length === 0 && nextProps.videos.length > 0) {
             this.props.getVideoCategories(nextProps.videos);
         }
+
+        // if the categoryId is changed, update the local state
         if (nextProps.filters.categoryId !== this.state.selectedCategory) {
-            this.setState({selectedCategory: nextProps.filters.categoryId});
+            this.setState({ selectedCategory: nextProps.filters.categoryId });
         }
+
     }
 
+    /**
+     * Method triggered on dropDownMenu change to apply the selected category filter.
+     * @param event
+     * @param index
+     * @param value
+     */
     handleCategoryChange = (event, index, value) => {
         this.props.applyCategoryFilter(value);
     }
 
     render () {
+
+        // don't show the dropDown if there are no categories
         if (!this.props.videosCategories.length > 0) {
             return null;
         }
