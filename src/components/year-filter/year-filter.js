@@ -39,8 +39,8 @@ class YearFilter extends Component {
             const minYear = uniqueYearList[0];
             const maxYear = uniqueYearList[uniqueYearList.length - 1];
             this.setState({
-                minYear,
-                maxYear,
+                minYear: (minYear === maxYear) ? null : minYear,
+                maxYear: (minYear === maxYear) ? null : maxYear,
                 selectedYear: this.state.selectedYear ? this.state.selectedYear : maxYear,
             });
         }
