@@ -23,7 +23,7 @@ class CategoryFilter extends Component {
         if (nextProps.videosCategories.length === 0 && nextProps.videos.length > 0) {
             this.props.getVideoCategories(nextProps.videos);
         }
-        if (nextProps.filters.categoryId) {
+        if (nextProps.filters.categoryId !== this.state.selectedCategory) {
             this.setState({selectedCategory: nextProps.filters.categoryId});
         }
     }

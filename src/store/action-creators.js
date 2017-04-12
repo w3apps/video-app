@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import store from './store';
 
 const API_KEY = 'AIzaSyBSbxBuOc7rKjU-mahRSt94B38dsq9NGLQ';
+const VIDEOS_COUNT_LIMIT = 20;
 
 export const actionTypes = {
     GET_AUTO_COMPLETE_SUGGESTIONS: 'GET_AUTO_COMPLETE_SUGGESTIONS',
@@ -27,7 +28,7 @@ export function getAutoCompleteSuggestions(searchText) {
 export function searchVideos(searchText) {
     return {
         type: actionTypes.GET_SEARCHED_VIDEOS,
-        payload: fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${searchText}&type=video+&videoDefinition=high&key=${API_KEY}`).then((response) => {
+        payload: fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${VIDEOS_COUNT_LIMIT}&q=${searchText}&type=video+&videoDefinition=high&key=${API_KEY}`).then((response) => {
             return response.json();
         }).then((response) => {
             store.dispatch(getVideoStatistics(response));

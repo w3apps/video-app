@@ -10,7 +10,6 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import { Provider } from 'react-redux'
 
 import store from './store/store';
-import Header from './components/header/header';
 import Home from './pages/home';
 import MyVideos from './pages/my-videos';
 

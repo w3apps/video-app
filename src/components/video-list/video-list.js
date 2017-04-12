@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Paper from 'material-ui/Paper';
 
 import FavoriteButton from '../favorite-button/favorite-button';
 
@@ -11,7 +12,7 @@ export default class VideoList extends Component {
                 {
                     this.props.videos.map((video) => {
                         return (
-                            <div className="VideoContainer" key={video.id.videoId}>
+                            <Paper className="VideoContainer" key={video.id.videoId} zDepth={2}>
                                 <FavoriteButton className="VideoFavBtn" video={video} />
                                 <img className="VideoThumbnail" src={video.snippet.thumbnails.medium.url} />
                                 <h3 className="VideoTitle">{video.snippet.title}</h3>
@@ -26,7 +27,7 @@ export default class VideoList extends Component {
                                         )
                                     : null
                                 }
-                            </div>
+                            </Paper>
                         );
                     })
                 }
