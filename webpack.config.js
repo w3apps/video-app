@@ -15,7 +15,7 @@ const compiler = webpack({
     profile: true,
     context: path.resolve('./src'),
     entry: {
-        main: './app.js',
+        main: './entry.js',
     },
     output: {
         filename: '[name].js',
@@ -30,7 +30,8 @@ const compiler = webpack({
                 loader: "babel-loader",
                 exclude: /(node_modules)/,
                 options: {
-                    presets: ['react']
+                    presets: ['es2015', 'react'],
+                    plugins: ["transform-class-properties"],
                 },
             },
             // SCSS
@@ -51,12 +52,7 @@ const compiler = webpack({
             { from: './index.html' },
         ]),
         new ExtractTextPlugin("[name].css"),
-    ],
-    devServer: {
-        contentBase: path.resolve('./dist'),
-        compress: true,
-        port: 9000
-    }
+    ]
 
 }, (err, stats) => {
     if (err || stats.hasErrors()) {
@@ -66,5 +62,8 @@ const compiler = webpack({
 console.log('Duration:', (stats.endTime - stats.startTime));
 });
 
-const server = new WebpackDevServer(compiler);
+const server = new WebpackDevServer(compiler, {
+    historyApiFallback: true,
+    contentBase: path.resolve('./dist'),
+});
 server.listen(8080);
