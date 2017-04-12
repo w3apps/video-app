@@ -1,0 +1,33 @@
+.VideoList {
+  display: flex;
+  flex-wrap: wrap;
+
+  .VideoContainer {
+    width: 240px;
+    padding: 20px;
+
+    .VideoThumbnail {
+      width: 100%;
+    }
+
+    .VideoTitle {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .VideoChannel {
+      margin: 3px 0;
+      font-size: 12px;
+      color: #167ac6;
+    }
+
+    .VideoStatistics {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      font-size: 12px;
+      color: #666666;
+    }
+
+  }
+}

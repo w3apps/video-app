@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux'
 
 import store from './store/store';
-import Header from './components/header';
+import Header from './components/header/header';
 import Home from './pages/home';
 import MyVideos from './pages/my-videos';
 
@@ -26,7 +26,6 @@ export default class App extends Component {
     }
 
     render () {
-        console.log('here', store);
         return (
             <Provider store={store}>
                 <MuiThemeProvider>

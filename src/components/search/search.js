@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
+import FlatButton from 'material-ui/FlatButton';
+import ActionSearch from 'material-ui/svg-icons/action/search';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getAutoCompleteSuggestions, searchVideos } from '../store/action-creators';
+import { getAutoCompleteSuggestions, searchVideos } from '../../store/action-creators';
+
+import './search.scss';
 
 let autoCompleteTimer = null;
+const buttonStyle = {
+    marginLeft: '20px',
+    marginBottom: '10px',
+};
 
 class Search extends Component {
 
@@ -19,7 +27,6 @@ class Search extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.autoCompleteSuggestions) {
-            console.log('hmmmm', nextProps.autoCompleteSuggestions);
             this.setState({ dataSource: nextProps.autoCompleteSuggestions });
         }
     }
@@ -38,21 +45,24 @@ class Search extends Component {
     }
 
     handleSearch = (e) => {
-        if (e.charCode === 13) {
-            searchVideos(this.state.searchText);
+        if (this.state.searchText.length > 0) {
+            this.props.searchVideos(this.state.searchText);
         }
     }
 
     render () {
         return (
-            <AutoComplete
-                dataSource={this.state.dataSource}
-                floatingLabelText="Search videos"
-                fullWidth={true}
-                onUpdateInput={this.handleChange}
-                value={this.state.searchText}
-                onKeyPress={this.handleSearch}
-            />
+            <div className="Search">
+                <AutoComplete
+                    dataSource={this.state.dataSource}
+                    floatingLabelText="Search videos"
+                    fullWidth={true}
+                    onUpdateInput={this.handleChange}
+                    onNewRequest={this.handleSearch}
+                    value={this.state.searchText}
+                />
+                <FlatButton style={buttonStyle} icon={<ActionSearch />} onClick={this.handleSearch} />
+            </div>
         )
     }
 }
